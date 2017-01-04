@@ -35,49 +35,31 @@ UPDATED 12.21.16-->
 		<p>This name generator includes every name from all <i>Far Side</i> galleries except <i>In Search of the Far Side, Bride of the Far Side, It Came from The Far Side, Hound of The Far Side, Wildlife Preserves, The Curse of Madame "C", Last Chapter and Worse</i>.  I received four of these for Christmas, so I'll get around to uploading them soon.  I'm sure I'll get my hands on the last three at some point ;)<p>
 		
 		<script>
+		function NameCollection(names) {
+			this.names = names;
+		}
+
+		NameCollection.prototype.random = function () {
+			return this.names[Math.floor(Math.random()*this.names.length)];
+		}
+
+		function setText(id, text) {
+			document.getElementById(id).textContent = text;
+		}
+
+		var maleFirstNames = new NameCollection(["Bob", "Clarence", "Bill", "Murray", "Floyd", "Bobby", "Durk", "Stanley", "Omar", "Carl", "Warren", "Billy", "Leroy", "Larry", "Zach", "Raymond", "Ben", "Ned", "Todd", "Henry", "Will", "Arnie", "Sidney", "Desmond", "Jed", "Jim", "Johnny", "Melvin", "Terrence", "Russell", "Gus", "Frank", "Stan", "John", "Don", "Stuart", "Rusty", "Ed", "Matthew", "Clem", "Lenny", "Cindy", "Kyle", "Joe", "Cisco", "Frances", "George", "Rodney", "Anthony", "Luke", "Vance", "Willard", "Vinnie", "Joey", "Vern", "Irv", "Chuck", "Bert", "Fred", "Randy", "Fletcher", "Allen", "Roger", "Charles", "Jack", "Rob", "Danny", "Jake", "Louis", "Mac", "Dave", "Andy", "Reuben", "Howard", "Earl", "Ronald", "Harold", "Boris", "Brian", "Doug", "Ahab", "Bernie", "Alex", "Ernie", "Ted", "Dwayne", "Brad", "Abdul", "Ramone", "Leonard", "Sid", "Hank", "Marge", "Norm", "Mitch", "Dan", "Edward", "Sam", "Wayne", "Maurice", "Jimmy", "Bernard", "Mitchell", "Jonathan", "Vince", "Rudy", "Ralph", "Darren", "Conroy", "Arnold", "Bernardo", "Giovanni", "Samuel", "Steve", "Gomez", "Hal", "Irwin", "Al", "Andrew", "Norman", "Harry", "Bobby Joe", "Wendell", "Dale", "Kevin", "Barry", "Roy", "Edgar"]);
+		var femaleFirstNames = new NameCollection(["Sylvia", "Dinah", "Edna", "Harriet", "Margaret", "Jessica", "Yvonne", "Misty", "Helen", "Sandy", "Rita", "Doreen", "Judy", "Debbie", "Loretta", "Hilda", "Ross", "Lois", "Bessie", "Irene", "Etta", "Doris", "Emily", "Gladys", "Agnes", "Rhonda", "Elizabeth", "Phyllis", "Shirley", "Betty", "Mona", "Linda", "Lola", "Zelda", "Alice", "Marge", "Wanda", "Francine", "Betty Sue", "Sally", "Edith", "Ruby", "Carol", "Monica", "Muriel", "Wendy", "Arlene", "Barbara", "Becky"]);
+		var lastNames = new NameCollection(["Wilson", "Jones", "Farnsworth", "Williams", "Henderson", "Huxley", "Oswald", "Merrimont", "O'Leary", "McFadden", "Kellerman", "McGinnis", "O'Neill", "Needleman", "Flannegan", "Rogers", "Hawkins", "Glickman", "Bingham", "O'Malley", "Schwartzman", "Lewis", "MacDougal", "Rawlings", "Fenwick", "Griswold", "Cranshaw", "Dickerson", "Gaffney", "Byron", "Belsky", "Moody", "Lundquist", "Muldoon", "Rosenbloom", "Wagner", "Brown", "Dickle", "Weinberg", "Eagen", "Morrison", "Goodman", "Lambini", "Steinberg", "Conswego", "Osborne", "Gallagher", "Potter", "Morgan", "Greystokes", "Myron", "Norton", "Zurkowitz", "Monet", "Murphy", "Weatherby", "Gizmo", "Simmons", "Lorraine", "Fenton", "Barnaby", "Wimberly", "Higgins", "Horowitz", "Webster", "Miller", "Collings", "Blair", "Calloway", "Knudson", "Gruenfeld", "D'Gizarde", "Wellington", "Kevorkian", "Wiggins", "Sutton", "Digs", "Blanchard", "MacIntyre", "Belcher", "LaVonne", "Crutchfield", "Doyle", "Nickerson", "Jefferson", "Irving", "Hagstrom", "Harrison", "Murdock", "Dawkins", "Johnson", "Zimmerman", "Stromberg", "Bartolini", "D'Amento", "Sullivan", "Schueler", "Dittmars", "Dansworth", "McCallister", "Jenkins", "Sidney", "Rosenburg", "Anderson", "Zurkowitz", "Holsteins", "Stevens", "Flemming", "Talbot", "Schneider", "Schwartz", "Tilley", "Hansen", "Schultz", "Parker", "Cummings", "Billings", "Schnabel", "Meeker", "Ellington", "Foster"]);
+		var nicknames = new NameCollection(["Big Bob", "Javahead", "Stumpy", "Carlotta", "Vexorg", "Zornorph", "Sheewana", "Squeezle", "Mr. Big Nose", "Larry of the Lemurs", "Binky", "The Teapot Kid", "Jeannie Jeannie Eatszucchini"]);
+		var petNames = new NameCollection(["Rex", "Zeke", "Sparky", "Ginger", "Tucker", "Shep", "Pookie", "Bobo", "King", "Lulu", "Zeek", "Rusty", "Maurice", "Big Al", "Rory", "Mr. Mountain Lion", "Clair", "Chippy", "Tuffy", "Big Red", "Biff", "Tantor", "Fifi", "Oggy", "Bozo", "Buck", "Muffy", "Toby"]);
+		var otherNames = new NameCollection(["Thag", "Zog", "Zeena", "Gorok", "Thak", "Gork", "Norg", "Danook", "Zak", "Dirk", "Red Eagle", "Chief Big Bear", "Zorak", "Little Bear", "Zukutu"]);
+
 		function getNewName() {
-			var maleFirstNames = ["Bob", "Clarence", "Bill", "Murray", "Floyd", "Bobby", "Durk", "Stanley", "Omar", "Carl", "Warren", "Billy", "Leroy", "Larry", "Zach", "Raymond", "Ben", "Ned", "Todd", "Henry", "Will", "Arnie", "Sidney", "Desmond", "Jed", "Jim", "Johnny", "Melvin", "Terrence", "Russell", "Gus", "Frank", "Stan", "John", "Don", "Stuart", "Rusty", "Ed", "Matthew", "Clem", "Lenny", "Cindy", "Kyle", "Joe", "Cisco", "Frances", "George", "Rodney", "Anthony", "Luke", "Vance", "Willard", "Vinnie", "Joey", "Vern", "Irv", "Chuck", "Bert", "Fred", "Randy", "Fletcher", "Allen", "Roger", "Charles", "Jack", "Rob", "Danny", "Jake", "Louis", "Mac", "Dave", "Andy", "Reuben", "Howard", "Earl", "Ronald", "Harold", "Boris", "Brian", "Doug", "Ahab", "Bernie", "Alex", "Ernie", "Ted", "Dwayne", "Brad", "Abdul", "Ramone", "Leonard", "Sid", "Hank", "Marge", "Norm", "Mitch", "Dan", "Edward", "Sam", "Wayne", "Maurice", "Jimmy", "Bernard", "Mitchell", "Jonathan", "Vince", "Rudy", "Ralph", "Darren", "Conroy", "Arnold", "Bernardo", "Giovanni", "Samuel", "Steve", "Gomez", "Hal", "Irwin", "Al", "Andrew", "Norman", "Harry", "Bobby Joe", "Wendell", "Dale", "Kevin", "Barry", "Roy", "Edgar"];
-			var maleFirstNamesCount = 128;
-			
-			var femaleFirstNames = ["Sylvia", "Dinah", "Edna", "Harriet", "Margaret", "Jessica", "Yvonne", "Misty", "Helen", "Sandy", "Rita", "Doreen", "Judy", "Debbie", "Loretta", "Hilda", "Ross", "Lois", "Bessie", "Irene", "Etta", "Doris", "Emily", "Gladys", "Agnes", "Rhonda", "Elizabeth", "Phyllis", "Shirley", "Betty", "Mona", "Linda", "Lola", "Zelda", "Alice", "Marge", "Wanda", "Francine", "Betty Sue", "Sally", "Edith", "Ruby", "Carol", "Monica", "Muriel", "Wendy", "Arlene", "Barbara", "Becky"];
-			var femaleFirstNamesCount = 49;
-			
-			var lastNames = ["Wilson", "Jones", "Farnsworth", "Williams", "Henderson", "Huxley", "Oswald", "Merrimont", "O'Leary", "McFadden", "Kellerman", "McGinnis", "O'Neill", "Needleman", "Flannegan", "Rogers", "Hawkins", "Glickman", "Bingham", "O'Malley", "Schwartzman", "Lewis", "MacDougal", "Rawlings", "Fenwick", "Griswold", "Cranshaw", "Dickerson", "Gaffney", "Byron", "Belsky", "Moody", "Lundquist", "Muldoon", "Rosenbloom", "Wagner", "Brown", "Dickle", "Weinberg", "Eagen", "Morrison", "Goodman", "Lambini", "Steinberg", "Conswego", "Osborne", "Gallagher", "Potter", "Morgan", "Greystokes", "Myron", "Norton", "Zurkowitz", "Monet", "Murphy", "Weatherby", "Gizmo", "Simmons", "Lorraine", "Fenton", "Barnaby", "Wimberly", "Higgins", "Horowitz", "Webster", "Miller", "Collings", "Blair", "Calloway", "Knudson", "Gruenfeld", "D'Gizarde", "Wellington", "Kevorkian", "Wiggins", "Sutton", "Digs", "Blanchard", "MacIntyre", "Belcher", "LaVonne", "Crutchfield", "Doyle", "Nickerson", "Jefferson", "Irving", "Hagstrom", "Harrison", "Murdock", "Dawkins", "Johnson", "Zimmerman", "Stromberg", "Bartolini", "D'Amento", "Sullivan", "Schueler", "Dittmars", "Dansworth", "McCallister", "Jenkins", "Sidney", "Rosenburg", "Anderson", "Zurkowitz", "Holsteins", "Stevens", "Flemming", "Talbot", "Schneider", "Schwartz", "Tilley", "Hansen", "Schultz", "Parker", "Cummings", "Billings", "Schnabel", "Meeker", "Ellington", "Foster"];
-			var lastNamesCount = 121;
-			
-			var nicknames = ["Big Bob", "Javahead", "Stumpy", "Carlotta", "Vexorg", "Zornorph", "Sheewana", "Squeezle", "Mr. Big Nose", "Larry of the Lemurs", "Binky", "The Teapot Kid", "Jeannie Jeannie Eatszucchini"];
-			var nicknamesCount = 13;
-			
-			var petNames = ["Rex", "Zeke", "Sparky", "Ginger", "Tucker", "Shep", "Pookie", "Bobo", "King", "Lulu", "Zeek", "Rusty", "Maurice", "Big Al", "Rory", "Mr. Mountain Lion", "Clair", "Chippy", "Tuffy", "Big Red", "Biff", "Tantor", "Fifi", "Oggy", "Bozo", "Buck", "Muffy", "Toby"];
-			var petNamesCount = 28
-			
-			var otherNames = ["Thag", "Zog", "Zeena", "Gorok", "Thak", "Gork", "Norg", "Danook", "Zak", "Dirk", "Red Eagle", "Chief Big Bear", "Zorak", "Little Bear", "Zukutu"];
-			var otherNamesCount = 15;
-			
-			var maleFirstNamesResult = "Male: ";
-			maleFirstNamesResult += maleFirstNames[Math.floor(Math.random()*maleFirstNamesCount)];
-			maleFirstNamesResult += " "
-			maleFirstNamesResult += lastNames[Math.floor(Math.random()*lastNamesCount)];
-			document.getElementById("maleFirstNamesText").innerHTML = maleFirstNamesResult;
-			
-			var femaleFirstNamesResult = "Female: ";
-			femaleFirstNamesResult += femaleFirstNames[Math.floor(Math.random()*femaleFirstNamesCount)];
-			femaleFirstNamesResult += " "
-			femaleFirstNamesResult += lastNames[Math.floor(Math.random()*lastNamesCount)];
-			document.getElementById("femaleFirstNamesText").innerHTML = femaleFirstNamesResult;
-			
-			var nicknamesResult = "Nickname: '";
-			nicknamesResult += nicknames[Math.floor(Math.random()*nicknamesCount)];
-			nicknamesResult += "'";
-			document.getElementById("nicknamesText").innerHTML = nicknamesResult;
-			
-			var petNamesResult = "Pet name: ";
-			petNamesResult += petNames[Math.floor(Math.random()*petNamesCount)];
-			document.getElementById("petNamesText").innerHTML = petNamesResult;
-			
-			var otherNamesResult = "Other names (Cavemen, Alien, etc.): ";
-			otherNamesResult += otherNames[Math.floor(Math.random()*otherNamesCount)];
-			document.getElementById("otherNamesText").innerHTML = otherNamesResult;
+			setText("maleFirstNamesText", "Male: " + maleFirstNames.random() + " " + lastNames.random());
+			setText("femaleFirstNamesText", "Female: " + femaleFirstNames.random() + " " + lastNames.random());
+			setText("nicknamesText", "Nickname: '" + nicknames.random() + "'");
+			setText("petNamesText", "Pet name: " + petNames.random());
+			setText("otherNamesText", "Other names (Cavemen, Alien, etc.): " + otherNames.random());
 		}
 		</script>
 	</body>
